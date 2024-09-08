@@ -6,6 +6,10 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private List<PuzzleSlot> _slots;
     [SerializeField] private List<PuzzlePiece> _piecePrefabs;
 
+    // Define the spawn area boundaries (you can adjust these values based on your scene)
+    [SerializeField] private Vector2 spawnAreaMin = new Vector2(-10f, -4f);
+    [SerializeField] private Vector2 spawnAreaMax = new Vector2(10f, 4f);
+
     private Queue<PuzzlePiece> _piecesQueue = new Queue<PuzzlePiece>();
     private int _currentSpawnCount = 2;
     private int _placedPieces = 0;
@@ -103,6 +107,14 @@ public class PuzzleManager : MonoBehaviour
 
                 if (piece != null)
                 {
+                    // Generate a random position within the defined spawn area
+                    Vector2 randomSpawnPosition = new Vector2(
+                        Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+                        Random.Range(spawnAreaMin.y, spawnAreaMax.y)
+                    );
+
+                    // Set the piece's position to the random spawn point
+                    piece.transform.position = randomSpawnPosition;
                     piece.gameObject.SetActive(true);
                     _currentlySpawnedPieces.Add(piece);
                     spawnedThisRound.Add(piece);
@@ -116,11 +128,10 @@ public class PuzzleManager : MonoBehaviour
                         }
                     }
                 }
-
-                    else
-    {
-        Debug.LogError("Null piece found!");
-    }
+                else
+                {
+                    Debug.LogError("Null piece found!");
+                }
             }
         }
     }
@@ -129,6 +140,9 @@ public class PuzzleManager : MonoBehaviour
     {
         _placedPieces++;
         _currentlySpawnedPieces.Remove(piece);
+
+        // Deactivate the piece once it is placed
+        piece.gameObject.SetActive(false);
 
         if (_placedPieces == _currentSpawnCount)
         {
