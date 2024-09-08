@@ -623,11 +623,18 @@ MonoBehaviour:
   - {fileID: 7080854900357137863, guid: 39c38da9b900dbc459a9bde0ef60fb71, type: 3}
   - {fileID: 7920888698222350087, guid: a6eeb08abf0a9ec488d3e0bc3dfffc1f, type: 3}
   - {fileID: 7010541046875226460, guid: 6fd5c86394c01cd4bb102601c3738d21, type: 3}
-  - {fileID: 2476579832584122211, guid: 00a15872db8c6684e8af1c329c97925f, type: 3}
+  - {fileID: 3882282817449642459, guid: cf1d50d547c7a2147bf1b2fe163360c4, type: 3}
   - {fileID: 9146302156334707427, guid: 33d01c6872b677341b9436624ad88cf0, type: 3}
-  - {fileID: 2894399007472778381, guid: 0bd0f297e59fc214d8048b2bf350c992, type: 3}
-  - {fileID: 3515835179269103930, guid: 78e904f21d7714d48aad71552fd05413, type: 3}
-  - {fileID: 3515835179269103930, guid: 78e904f21d7714d48aad71552fd05413, type: 3}
+  - {fileID: 8033787072346380033, guid: d9100850ebbac6147be12d2b11d2bc09, type: 3}
+  - {fileID: 3704091142100523507, guid: 988a88bff75d3f741a2f19f5f5f17e6c, type: 3}
+  - {fileID: 1060821503628200546, guid: fa27e6e67a37f5140891b8f84b53fd65, type: 3}
+  - {fileID: 7961958879755624593, guid: 15ac21b1676e8514092d1da2f5b7b46d, type: 3}
+  - {fileID: 3167360824745568722, guid: 18969b353a654a64bbe1b1e0d337b743, type: 3}
+  - {fileID: 8673553262476183964, guid: bd3393afd9104434ea9d04c8726df337, type: 3}
+  - {fileID: 107248840633407714, guid: cb9296e5fddebc548b4f9b41d475f344, type: 3}
+  - {fileID: 6855629815545881620, guid: 6412a10557986ec45931645bcec7ec5f, type: 3}
+  spawnAreaMin: {x: -5, y: -3}
+  spawnAreaMax: {x: 5, y: 3}
 --- !u!4 &1653826371
 Transform:
   m_ObjectHideFlags: 0
