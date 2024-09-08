@@ -66,6 +66,16 @@ public class PuzzleManager : MonoBehaviour
 
     void SpawnPieces(int count)
     {
+        if (Score.instance == null)
+        {
+            Debug.LogError("Score.instance is null!");
+        }
+
+        if (CameraController.instance == null)
+        {
+            Debug.LogError("CameraController.instance is null!");
+        }
+
         if (Score.instance.GetScore() >= 26)
         {
             Debug.Log("Game Over! All pieces placed.");
@@ -106,6 +116,11 @@ public class PuzzleManager : MonoBehaviour
                         }
                     }
                 }
+
+                    else
+    {
+        Debug.LogError("Null piece found!");
+    }
             }
         }
     }

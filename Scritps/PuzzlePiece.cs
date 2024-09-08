@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class PuzzlePiece : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private string _type; 
 
+    [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private AudioSource _source;
     [SerializeField] private AudioClip _pickUpClip, _dropClip, _successClip;
 
-
     private bool _dragging = false;
     private bool _placed = false;
-
     private Vector2 _offset, originalPosition;
-
     private PuzzleSlot _slot;
+
+    public string Type 
+    {
+        get { return _type; }
+    }
     public void Init(PuzzleSlot slot)
     {
-        _renderer.sprite = slot.Renderer.sprite;
         _slot = slot;
     }
 
@@ -48,6 +50,14 @@ public class PuzzlePiece : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (Vector2.Distance(transform.position, _slot.transform.position) < 3)
+        {
+            transform.position = _slot.transform.position;
+            _slot.Placed();
+            _placed = true;
+        }
+        else
+        {
 
 
             transform.position = originalPosition;
@@ -55,7 +65,7 @@ public class PuzzlePiece : MonoBehaviour
             _dragging = false;
 
 
-        
+        }
     }
 
     Vector2 GetMousePos()
