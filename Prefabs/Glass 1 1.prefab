@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &906982401389592483
+--- !u!1 &1956823019086780699
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,39 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5691564055560428251}
-  - component: {fileID: 153536550029565344}
-  - component: {fileID: 2476579832584122211}
-  - component: {fileID: 4109372225458971220}
-  - component: {fileID: 6456316592761307896}
+  - component: {fileID: 6431783212488162403}
+  - component: {fileID: 1558051091658046232}
+  - component: {fileID: 3882282817449642459}
+  - component: {fileID: 3366823209855108332}
+  - component: {fileID: 5631546965194794048}
   m_Layer: 0
-  m_Name: Glass 1
+  m_Name: Glass 1 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5691564055560428251
+--- !u!4 &6431783212488162403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906982401389592483}
+  m_GameObject: {fileID: 1956823019086780699}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.59, y: 0.32, z: 0}
+  m_LocalPosition: {x: -5.3906527, y: -0.7136071, z: 0}
   m_LocalScale: {x: 0.3211, y: 0.25271434, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &153536550029565344
+--- !u!212 &1558051091658046232
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906982401389592483}
+  m_GameObject: {fileID: 1956823019086780699}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -85,31 +85,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2476579832584122211
+--- !u!114 &3882282817449642459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906982401389592483}
+  m_GameObject: {fileID: 1956823019086780699}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a798cbe3910d3ef47979ff245ebdf03a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _type: Glass
-  _renderer: {fileID: 153536550029565344}
-  _source: {fileID: 4109372225458971220}
+  _renderer: {fileID: 1558051091658046232}
+  _source: {fileID: 3366823209855108332}
   _pickUpClip: {fileID: 8300000, guid: 32d4b1811dda14a6cb9e059ee8ad17d2, type: 3}
   _dropClip: {fileID: 8300000, guid: 19f89c6e740e7447f9e12a8310d3e973, type: 3}
   _successClip: {fileID: 8300000, guid: 0c008ee3ee72a4362a35be25fa5de043, type: 3}
---- !u!82 &4109372225458971220
+--- !u!82 &3366823209855108332
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906982401389592483}
+  m_GameObject: {fileID: 1956823019086780699}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -123,7 +123,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.8929563
+  MinDistance: 2.4682112
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -199,20 +199,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!61 &6456316592761307896
+--- !u!61 &5631546965194794048
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906982401389592483}
+  m_GameObject: {fileID: 1956823019086780699}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.24429715, y: -3.4144568}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -223,5 +223,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.95, y: 2.81}
+  m_Size: {x: 5.438594, y: 12.536029}
   m_EdgeRadius: 0
