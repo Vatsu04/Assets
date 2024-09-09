@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PuzzleManager : MonoBehaviour
 {
+    [SerializeField] private GameObject startupMenu; // Reference to the startup menu GameObject (containing the button and text)
+    [SerializeField] private Button startButton; // Reference to the start button
+    [SerializeField] private Text startText; 
     [SerializeField] private List<PuzzleSlot> _slots;
     [SerializeField] private List<PuzzlePiece> _piecePrefabs;
 
-    // Define the spawn area boundaries (you can adjust these values based on your scene)
     [SerializeField] private Vector2 spawnAreaMin = new Vector2(-10f, -4f);
     [SerializeField] private Vector2 spawnAreaMax = new Vector2(10f, 4f);
 
@@ -20,12 +24,13 @@ public class PuzzleManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
+        startButton.onClick.AddListener(StartGame); 
     }
+
 
     void Start()
     {
-        InitializePieceQueue();
-        SpawnPieces(_currentSpawnCount);
+
     }
 
     public void GameOver()
@@ -134,6 +139,18 @@ public class PuzzleManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void StartGame()
+    {
+
+        startupMenu.SetActive(false);
+
+        // Initialize and spawn the initial pieces
+        InitializePieceQueue();
+        SpawnPieces(_currentSpawnCount);
+
+
     }
 
     public void PiecePlaced(PuzzlePiece piece)
