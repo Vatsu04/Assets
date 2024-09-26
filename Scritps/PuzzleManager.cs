@@ -2,12 +2,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class PuzzleManager : MonoBehaviour
 {
     [SerializeField] private GameObject startupMenu; // Reference to the startup menu GameObject (containing the button and text)
     [SerializeField] private Button startButton; // Reference to the start button
-    [SerializeField] private Text startText; 
+    [SerializeField] private Text startText;
     [SerializeField] private List<PuzzleSlot> _slots;
     [SerializeField] private List<PuzzlePiece> _piecePrefabs;
 
@@ -21,12 +20,14 @@ public class PuzzleManager : MonoBehaviour
 
     public static PuzzleManager Instance;
 
+    private Camera mainCamera; // Reference to the main camera
+
     void Awake()
     {
         Instance = this;
-        startButton.onClick.AddListener(StartGame); 
+        startButton.onClick.AddListener(StartGame);
+        mainCamera = Camera.main; // Get reference to the main camera
     }
-
 
     void Start()
     {
@@ -143,14 +144,17 @@ public class PuzzleManager : MonoBehaviour
 
     public void StartGame()
     {
-
         startupMenu.SetActive(false);
+
+        // Move the camera to the desired position
+        if (mainCamera != null)
+        {
+            mainCamera.transform.position = new Vector3(-124.6f, -36.8f, mainCamera.transform.position.z);
+        }
 
         // Initialize and spawn the initial pieces
         InitializePieceQueue();
         SpawnPieces(_currentSpawnCount);
-
-
     }
 
     public void PiecePlaced(PuzzlePiece piece)
