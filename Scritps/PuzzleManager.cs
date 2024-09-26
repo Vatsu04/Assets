@@ -4,9 +4,10 @@ using UnityEngine.UI;
 
 public class PuzzleManager : MonoBehaviour
 {
-    [SerializeField] private GameObject startupMenu; // Reference to the startup menu GameObject (containing the button and text)
-    [SerializeField] private Button startButton; // Reference to the start button
+    [SerializeField] private GameObject startupMenu; 
+    [SerializeField] private Button startButton;
     [SerializeField] private Text startText;
+    [SerializeField] private GameObject endingText; 
     [SerializeField] private List<PuzzleSlot> _slots;
     [SerializeField] private List<PuzzlePiece> _piecePrefabs;
 
@@ -31,13 +32,30 @@ public class PuzzleManager : MonoBehaviour
 
     void Start()
     {
-
+        if (endingText != null)
+        {
+            endingText.SetActive(false); // Make sure the ending text is disabled by default
+        }
     }
 
     public void GameOver()
     {
         Debug.Log("Game Over! All pieces have been placed.");
         CameraController.instance.endGame();
+
+        // Move the camera to the desired position when the game is over
+        if (mainCamera != null)
+        {
+            mainCamera.transform.position = new Vector3(-124.6f, -36.8f, mainCamera.transform.position.z);
+        }
+
+
+        if (endingText != null)
+        {
+            Debug.Log("Enabling ending text.");
+            endingText.SetActive(true);
+        }
+
     }
 
     void InitializePieceQueue()
@@ -145,12 +163,6 @@ public class PuzzleManager : MonoBehaviour
     public void StartGame()
     {
         startupMenu.SetActive(false);
-
-        // Move the camera to the desired position
-        if (mainCamera != null)
-        {
-            mainCamera.transform.position = new Vector3(-124.6f, -36.8f, mainCamera.transform.position.z);
-        }
 
         // Initialize and spawn the initial pieces
         InitializePieceQueue();
