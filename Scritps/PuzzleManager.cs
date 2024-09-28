@@ -7,7 +7,8 @@ public class PuzzleManager : MonoBehaviour
     [SerializeField] private GameObject startupMenu; 
     [SerializeField] private Button startButton;
     [SerializeField] private Text startText;
-    [SerializeField] private GameObject endingText; 
+    [SerializeField] private GameObject endingText;
+    [SerializeField] private Button restartButton; 
     [SerializeField] private List<PuzzleSlot> _slots;
     [SerializeField] private List<PuzzlePiece> _piecePrefabs;
 
@@ -17,6 +18,8 @@ public class PuzzleManager : MonoBehaviour
     private Queue<PuzzlePiece> _piecesQueue = new Queue<PuzzlePiece>();
     private int _currentSpawnCount = 2;
     private int _placedPieces = 0;
+    private int extraPieces = 0; // Tracks additional pieces to collect each game
+    private int targetScore = 26; // The initial target score that increments with each restart
     private HashSet<PuzzlePiece> _currentlySpawnedPieces = new HashSet<PuzzlePiece>();
 
     public static PuzzleManager Instance;
@@ -28,6 +31,12 @@ public class PuzzleManager : MonoBehaviour
         Instance = this;
         startButton.onClick.AddListener(StartGame);
         mainCamera = Camera.main; // Get reference to the main camera
+
+        if (restartButton != null)
+        {
+            restartButton.onClick.AddListener(RestartGame);
+            restartButton.gameObject.SetActive(false); // Make sure the restart button is hidden initially
+        }
     }
 
     void Start()
@@ -49,13 +58,12 @@ public class PuzzleManager : MonoBehaviour
             mainCamera.transform.position = new Vector3(-124.6f, -36.8f, mainCamera.transform.position.z);
         }
 
+        endingText.SetActive(true);
 
-        if (endingText != null)
+        if (restartButton != null)
         {
-            Debug.Log("Enabling ending text.");
-            endingText.SetActive(true);
+            restartButton.gameObject.SetActive(true); // Display the restart button
         }
-
     }
 
     void InitializePieceQueue()
@@ -104,10 +112,10 @@ public class PuzzleManager : MonoBehaviour
             Debug.LogError("CameraController.instance is null!");
         }
 
-        if (Score.instance.GetScore() >= 26)
+        if (Score.instance.GetScore() >= targetScore)
         {
             Debug.Log("Game Over! All pieces placed.");
-            CameraController.instance.endGame();
+            GameOver();
             return;
         }
 
@@ -180,20 +188,43 @@ public class PuzzleManager : MonoBehaviour
         if (_placedPieces == _currentSpawnCount)
         {
             _placedPieces = 0;
-            if (_currentSpawnCount == 2)
-            {
-                _currentSpawnCount = 4;
-            }
-            else if (_currentSpawnCount == 4)
-            {
-                _currentSpawnCount = 8;
-            }
-            else if (_currentSpawnCount == 8)
-            {
-                _currentSpawnCount = 10;
-            }
 
-            SpawnPieces(_currentSpawnCount);
+            if (Score.instance.GetScore() >= targetScore) // Use the variable targetScore
+            {
+                GameOver(); // End the game when the target is reached
+            }
+            else
+            {
+                _currentSpawnCount += extraPieces; // Increase the number of pieces for the next round
+                SpawnPieces(_currentSpawnCount);
+            }
         }
+    }
+
+    public void RestartGame()
+    {
+        endingText.SetActive(false);
+        restartButton.gameObject.SetActive(false);
+
+        if (mainCamera != null)
+        {
+            mainCamera.transform.position = new Vector3(0, 0, mainCamera.transform.position.z);
+        }
+
+        _placedPieces = 0;
+        _piecesQueue.Clear();
+        _currentlySpawnedPieces.Clear();
+
+        extraPieces += 2; // Increase the number of additional pieces by 2 for the next game
+        _currentSpawnCount = 2 + extraPieces; // Update the initial spawn count for the next game
+
+        targetScore += 2; // Increment the target score by 2 on each restart
+
+        if (Score.instance != null)
+        {
+            Score.instance.ResetScore(); // Reset the score (ensure you have a ResetScore method in your Score class)
+        }
+
+        StartGame();
     }
 }
